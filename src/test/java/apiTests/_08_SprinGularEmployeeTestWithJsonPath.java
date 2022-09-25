@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
 
 import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 
 public class _08_SprinGularEmployeeTestWithJsonPath {
 

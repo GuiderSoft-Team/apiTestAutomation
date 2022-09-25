@@ -34,11 +34,11 @@ public class _06_SprinGularTestWithPath {
         "email": "arivera2@joomla.org",
         "role": "USER",
         "fullName": "MrinmoyMajumdar"
-                          /*  "test" : {
+                           "test" : {
                                     "test1":"pass",  //data.test.test1
                                     "test2":"pass"
                                     "test3":"fail"
-                            }*/
+                            }
     /*
     }
 }
@@ -46,6 +46,7 @@ public class _06_SprinGularTestWithPath {
     @Test
     public void testUserWithPath(){
         Response response = given().header("Authorization",accessToken)
+                .accept("application/json")
                 .when().get("/user");
         //response.prettyPrint();
 

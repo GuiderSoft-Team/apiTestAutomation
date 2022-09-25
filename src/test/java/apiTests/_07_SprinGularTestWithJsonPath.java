@@ -109,7 +109,7 @@ public class _07_SprinGularTestWithJsonPath {
   "userId": 1,
   "title": "GudierSoft",
   "body": "Merhaba"
-}
+    }
      */
     @Test
     public void JsonObject() {
