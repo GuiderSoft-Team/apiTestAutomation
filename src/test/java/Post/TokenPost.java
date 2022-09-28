@@ -4,12 +4,13 @@ public class TokenPost {
     private String username;
     private String password;
 
+    public TokenPost(){}
+
     public TokenPost(String username, String password) {
         super();
         this.username = username;
         this.password = password;
     }
-    public TokenPost(){}
 
     public String getUsername() {
         return username;

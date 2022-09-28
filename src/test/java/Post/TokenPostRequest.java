@@ -20,7 +20,7 @@ public class TokenPostRequest {
     }
 
     @Test
-    public void PostNewToken(){
+    public void PostNewToken() {
         String jsonBody = "{\n" +
                 "  \"username\": \"guidersoft\",\n" +
                 "  \"password\": \"quality_hunter\"\n" +
@@ -28,14 +28,14 @@ public class TokenPostRequest {
 
         Response response = given().log().all()
                 .header("Accept", "*/*")
-                .header("Content-Type","application/json")
+                .header("Content-Type", "application/json")
                 .and()
                 .body(jsonBody)
                 .when()
                 .post("/session");
 
         response.prettyPrint();
-        assertEquals(response.statusCode(),200);
+        assertEquals(response.statusCode(), 200);
 /*
         String operationStatus = response.path("operationStatus");
         String operationMessage = response.path("operationMessage");
@@ -47,26 +47,26 @@ public class TokenPostRequest {
         */
         JsonPath jsonPath = response.jsonPath();
         String operationStatus = jsonPath.getString("operationStatus");
-        String operationMessage =jsonPath.getString("operationMessage");
+        String operationMessage = jsonPath.getString("operationMessage");
         String item = jsonPath.getString("item");
 
         System.out.println("operationStatus = " + operationStatus);
         System.out.println("operationMessage = " + operationMessage);
         System.out.println("item = " + item);
 
-        assertEquals(operationStatus,"SUCCESS");
-        assertEquals(operationMessage,"Login Success");
+        assertEquals(operationStatus, "SUCCESS");
+        assertEquals(operationMessage, "Login Success");
     }
 
     @Test
-    public void PostNewTokenPOJO(){
+    public void PostNewTokenPOJO() {
         //Create an object
         TokenPost tokenPost = new TokenPost();
         tokenPost.setUsername("guidersoft");
         tokenPost.setPassword("quality_hunter");
 
         Response response = given().header("Accept", "*/*")
-                .header("Content-Type","application/json")
+                .header("Content-Type", "application/json")
                 .and()
                 .body(tokenPost)
                 .when()
@@ -74,9 +74,9 @@ public class TokenPostRequest {
 
         response.prettyPrint();
 
-        JsonPath jsonPath =response.jsonPath();
+        JsonPath jsonPath = response.jsonPath();
         String operationStatus = jsonPath.getString("operationStatus");
-        String operationMessage =jsonPath.getString("operationMessage");
+        String operationMessage = jsonPath.getString("operationMessage");
         String item = jsonPath.getString("item");
         String userId = jsonPath.getString("item.userId");
         String firstName = jsonPath.getString("item.firstName");
@@ -98,24 +98,26 @@ public class TokenPostRequest {
     }
 
 
-public static String TokenGenerator(String username, String password){
-    //Create an object
-    TokenPost tokenPost = new TokenPost();
-    tokenPost.setUsername(username);
-    tokenPost.setPassword(password);
+    public static String TokenGenerator(String username, String password) {
+        //Create an object
+        TokenPost tokenPost = new TokenPost();
+        tokenPost.setUsername(username);
+        tokenPost.setPassword(password);
 
-    Response response = given().header("Accept", "*/*")
-            .header("Content-Type","application/json")
-            .and()
-            .body(tokenPost)
-            .when()
-            .post("/session");
+        Response response = given().header("Accept", "*/*")
+                .header("Content-Type", "application/json")
+                .and()
+                .body(tokenPost)
+                .when()
+                .post("/session");
 
-    response.prettyPrint();
+        response.prettyPrint();
 
-    JsonPath jsonPath =response.jsonPath();
-    String token = jsonPath.getString("item.token");
+        JsonPath jsonPath = response.jsonPath();
+        String token = jsonPath.getString("item.token");
 
-    return token;
-}
+        return token;
+    }
+
+
 }
